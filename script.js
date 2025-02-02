@@ -1,4 +1,3 @@
-//your JS code here. If required.
 document.addEventListener("DOMContentLoaded", () => {
     const outputDiv = document.getElementById("output");
 
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return new Promise((resolve) => {
             setTimeout(() => {
                 const evens = numbers.filter(num => num % 2 === 0);
-                outputDiv.textContent = `Filtered Evens: ${evens.join(", ")}`;
+                outputDiv.textContent = Filtered Evens: ${evens.join(", ")};
                 resolve(evens);
             }, 1000);
         });
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return new Promise((resolve) => {
             setTimeout(() => {
                 const doubled = numbers.map(num => num * 2);
-                outputDiv.textContent = `Doubled Values: ${doubled.join(", ")}`;
+                outputDiv.textContent = Doubled Values: ${doubled.join(", ")};
                 resolve(doubled);
             }, 2000);
         });
@@ -38,6 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(filterEvenNumbers)
         .then(multiplyByTwo)
         .catch(error => {
-            outputDiv.textContent = `Error: ${error}`;
+            outputDiv.textContent = Error: ${error};
         });
 });
