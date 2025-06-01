@@ -1,42 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const outputDiv = document.getElementById("output");
+const express = require('express');
+const path = require('path');
 
-    // Function to return a promise resolving with an array after 3 seconds
-    function getNumbers() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve([1, 2, 3, 4]);
-            }, 3000);
-        });
-    }
+const app = express();
 
-    // Function to filter even numbers after 1 second
-    function filterEvenNumbers(numbers) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const evens = numbers.filter(num => num % 2 === 0);
-                outputDiv.textContent = `Filtered Evens: ${evens.join(", ")}`;
-                resolve(evens);
-            }, 1000);
-        });
-    }
+app.use(express.static(__dirname))
 
-    // Function to multiply even numbers by 2 after 2 seconds
-    function multiplyByTwo(numbers) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const doubled = numbers.map(num => num * 2);
-                outputDiv.textContent = `Doubled Values: ${doubled.join(", ")}`;
-                resolve(doubled);
-            }, 2000);
-        });
-    }
-
-    // Execute the chained promises
-    getNumbers()
-        .then(filterEvenNumbers)
-        .then(multiplyByTwo)
-        .catch(error => {
-            outputDiv.textContent = `Error: ${error}`;
-        });
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/main.html'));
 });
+//your code here
+app.post('/add', (req, res) => {
+  const {a,b} = req.body;
+  res.status(200).send(a+b);
+  // res.sendFile(path.join(__dirname + '/main.html'));
+});
+module.exports = app;

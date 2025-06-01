@@ -8,6 +8,24 @@
   <body>
     <!-- do not change this code -->
     <div id="output"></div>
-    <script type="text/javascript" src="./script.js"></script>
+    <script>
+        //your JS code here. If required.
+        const output = document.getElementById('output');
+        let arr = [1,2,3,4];
+        let promise = new Promise((res,rej)=>{
+	        res(arr);
+        }).then((arr)=>{
+	        setTimeout(()=>{
+		        let odd = arr.filter(x => x%2==0);
+		        output.innerHTML = odd;
+	        },1000);
+	        return arr;
+        }).then((arr)=>{
+	        setTimeout(()=>{
+		        let even2 = arr.filter(x => x%2==0).map(x => x*2);
+		        output.innerHTML = even2;
+	        },2000);
+        });
+    </script>
   </body>
 </html>
